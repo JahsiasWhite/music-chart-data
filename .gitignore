@@ -1,0 +1,9 @@
+# Dependencies
+.env
+node_modules
+/.pnp
+.pnp.js
+
+# VS Code files for those working on multiple tools
+.vscode/*
+!.vscode/settings.json
