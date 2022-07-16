@@ -111,8 +111,6 @@ const getArtistData = async (artist, track, type, cb) => {
   return chartData;
 };
 
-getArtistData('kanye-west', 'donda', 'albums').then((chart) => {
-  console.log(chart);
-});
-
-//module.exports = { getArtistData };
+module.exports = {
+  getArtistData,
+};
