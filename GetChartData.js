@@ -111,6 +111,4 @@ const getArtistData = async (artist, track, type, cb) => {
   return chartData;
 };
 
-module.exports = {
-  getArtistData,
-};
+export default getArtistData;
