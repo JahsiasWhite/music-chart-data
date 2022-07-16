@@ -1,17 +1,21 @@
 //const fetch = require('node-fetch');
 //const cheerio = require('cheerio');
-import fetch from 'node-fetch';
+//import fetch from 'node-fetch';
+import axios from 'axios';
 import cheerio from 'cheerio';
 
 const BASE_URL = 'https://musicchartsarchive.com';
 
 // Gets the HTML of a given URL
 const getRawData = (URL) => {
-  return fetch(URL)
-    .then((response) => response.text())
-    .then((data) => {
-      return data;
-    });
+  return (
+    axios
+      .get(URL)
+      //.then((response) => response.text())
+      .then((data) => {
+        return data.data;
+      })
+  );
 };
 
 /**
@@ -110,5 +114,7 @@ const getArtistData = async (artist, track, type, cb) => {
 
   return chartData;
 };
+
+console.log(getArtistData('kanye-west', 'donda', 'album'));
 
 export default getArtistData;
