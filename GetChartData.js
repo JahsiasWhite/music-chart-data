@@ -30,14 +30,27 @@ const getArtistData = async (artist, track, type, cb) => {
 
   if (typeof artistName === 'function') {
     // No name was specified
+    console.log('No artist name specified');
+    return;
   }
 
   if (typeof trackName === 'function') {
     // No track was specified
+    console.log('No track name specified');
+    return;
   }
 
   if (typeof type === 'function') {
     // No type was specified
+    console.log('No type specified');
+    return;
+  }
+
+  // That's what you meant, right?
+  if (recordType == 'album') {
+    recordType = 'albums';
+  } else if (recordType == 'single') {
+    recordType = 'singles';
   }
 
   //https://musicchartsarchive.com/singles/kendrick-lamar/pride
@@ -48,7 +61,6 @@ const getArtistData = async (artist, track, type, cb) => {
 
   // Get the plain HTML
   const html = await getRawData(url);
-  //console.log(html);
 
   // Load the HTML into cheerio to help parse
   var $ = cheerio.load(html);
@@ -56,19 +68,24 @@ const getArtistData = async (artist, track, type, cb) => {
   // Gets a list containing each week the record charted
   var dirtyChartData = [];
   $('.history-table')
-    .find('tr')
+    .find('tr') // each row
     .find('td')
     .each(function (i, tr) {
       dirtyChartData.push($(tr).text());
     });
 
+  // Checks if we were able to parse through the data
+  if (dirtyChartData.length == 0) {
+    console.log('No data found for: ', trackName, ' by ', artistName);
+    return;
+  }
+
   // Get rid of header text
   dirtyChartData.shift();
 
-  var myJsonString = JSON.stringify(dirtyChartData);
-  console.log(myJsonString);
-
   /**
+   *
+   * Puts the chart data into an object
    *
    * var chartData = {
    *     week=1 : {
@@ -90,10 +107,11 @@ const getArtistData = async (artist, track, type, cb) => {
     chartData[sectionName].position = dirtyChartData[i + 1];
     chartData[sectionName].id = i / 2;
   }
-  console.log(chartData);
+
+  return chartData;
 };
 
-getArtistData('future', 'wait-for-u', 'singles', (err, chart) => {
+getArtistData('kanye-west', 'donda', 'albums').then((chart) => {
   console.log(chart);
 });
 
