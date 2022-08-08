@@ -103,6 +103,7 @@ const getArtistData = async (artist, track, type, cb) => {
    * }
    *
    */
+
   var chartData = {};
   for (let i = 2; i < dirtyChartData.length; i += 2) {
     var sectionName = 'week-' + i / 2;
@@ -115,6 +116,6 @@ const getArtistData = async (artist, track, type, cb) => {
   return chartData;
 };
 
-console.log(getArtistData('kanye-west', 'donda', 'album'));
+console.log(await getArtistData('kanye-west', 'donda', 'album'));
 
 export default getArtistData;
