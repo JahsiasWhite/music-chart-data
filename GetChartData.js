@@ -27,7 +27,7 @@ const getRawData = (URL) => {
  * @param {String} type Format of the given track. Can be 'singles', 'album'.
  * @param {*} cb
  */
-const getArtistData = async (artist, track, type, cb) => {
+const getChartData = async (artist, track, type, cb) => {
   let artistName = artist;
   let trackName = track;
   let recordType = type;
@@ -116,6 +116,6 @@ const getArtistData = async (artist, track, type, cb) => {
   return chartData;
 };
 
-console.log(await getArtistData('kanye-west', 'donda', 'album'));
+console.log(await getChartData('kanye-west', 'donda', 'album'));
 
-export default getArtistData;
+export default getChartData;
