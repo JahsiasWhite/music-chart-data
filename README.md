@@ -1,4 +1,4 @@
-# weekly-music-chart-data
+# music-chart-data
 
 ## Installing
 npm i music-chart-data
