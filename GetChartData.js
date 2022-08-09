@@ -113,9 +113,8 @@ const getChartData = async (artist, track, type, cb) => {
     chartData[sectionName].id = i / 2;
   }
 
-  return chartData;
+  var finalData = await chartData;
+  return finalData;
 };
-
-console.log(await getChartData('kanye-west', 'donda', 'album'));
 
 export default getChartData;

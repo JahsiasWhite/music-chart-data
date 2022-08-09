@@ -1,6 +1,6 @@
 {
   "name": "music-chart-data",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Gets all weeks a record was charting for including its position of each week",
   "main": "GetChartData.js",
   "type": "module",
